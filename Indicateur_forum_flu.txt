@@ -1,0 +1,20 @@
+##INDICATEUR##
+
+Titre: Contribution
+
+Quoi: Comptabiliser le nombre de réponse médian aux questions (postes) dans le forum.
+
+Objectif d’analyse: Les nombres observés pourront dans un premier temps indiquer si un grand nombre ou pas de questions ont des réponses.
+Pour les postes qui auront des réponses, on pourra voir si le nombre de réponse est élevé, cela peut témoigner d’une forte contribution.
+
+Visualisation: Nombres de réponses par poste.
+
+Exemple visuel: Diagramme en barres.
+
+Tables + attributs utiles:
+- activité ('IDAct' => 9 (rep à msg), 10 (poster un msg))
+- transition (
+    'Titre' => Poster un nouveau message, Répondre à un message
+    'Date',
+    'Heure'
+)

@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,105 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model activite {
+  IDAct   Int    @id @default(autoincrement())
+  Titre   String @default("") @db.VarChar(120)
+  TypeAct Int    @default(0) @db.TinyInt
+  IDCat   Int?
+}
+
+model categorie {
+  IDCat Int    @id @default(autoincrement()) @db.MediumInt
+  Titre String @default("") @db.VarChar(120)
+}
+
+model transition {
+  IDTran      BigInt    @default(autoincrement())
+  Utilisateur String    @default("") @db.VarChar(70)
+  Titre       String    @default("") @db.VarChar(120)
+  Attribut    String?   @db.VarChar(200)
+  Date        DateTime  @default(dbgenerated("('0000-00-00')")) @db.Date
+  Heure       DateTime  @default(dbgenerated("('00:00:00')")) @db.Time(0)
+  Delai       DateTime? @db.Time(0)
+  RefTran     BigInt?   @default(0)
+  Commentaire String?   @db.VarChar(100)
+
+  @@id([IDTran, Utilisateur])
+}
+
+model typeu {
+  IDTypeU Int    @id @default(autoincrement()) @db.SmallInt
+  Titre   String @default("") @db.VarChar(70)
+}
+
+model userfiles {
+  ID         BigInt    @id @default(autoincrement())
+  User       String    @db.VarChar(70)
+  IDForum    BigInt?
+  IDMsg      BigInt
+  Filenameo  String    @db.VarChar(70)
+  Filenamer  String    @db.VarChar(20)
+  Filetype   String?   @db.VarChar(5)
+  Filesize   String?   @db.VarChar(12)
+  Dateupload DateTime  @default(dbgenerated("('0000-00-00')")) @db.Date
+  Timeupload DateTime  @default(dbgenerated("('00:00:00')")) @db.Time(0)
+  Date_la    DateTime? @default(dbgenerated("('0000-00-00')")) @db.Date
+  Time_la    DateTime? @default(dbgenerated("('00:00:00')")) @db.Time(0)
+  Nbdownload BigInt?   @default(0)
+  Filestatus Int?      @default(0) @db.TinyInt
+}
+
+model usertool {
+  IDUser   Int     @id @default(autoincrement())
+  Name     String  @default("") @db.VarChar(20)
+  Surname  String  @default("") @db.VarChar(20)
+  Email    String? @db.VarChar(50)
+  Login    String  @default("") @db.VarChar(20)
+  Password String  @default("") @db.VarChar(20)
+  Type     String  @default("") @db.VarChar(20)
+  Comment  String? @db.VarChar(50)
+}
+
+model usertool_notes {
+  IDNote     Int      @id @default(autoincrement())
+  Username   String   @default("") @db.VarChar(20)
+  Share      Int      @default(0) @db.TinyInt
+  Nbmax      Int      @default(0) @db.TinyInt
+  Note       String?  @db.Text
+  Date       DateTime @default(dbgenerated("('0000-00-00')")) @db.Date
+  Lastaccess DateTime @default(dbgenerated("('0000-00-00')")) @db.Date
+}
+
+model usertool_param {
+  IDParam      Int     @id @default(autoincrement())
+  Paramname1   String? @default("sortout") @db.VarChar(30)
+  Paramvalue1  String? @default("DESC") @db.VarChar(5)
+  Description1 String? @db.VarChar(50)
+  Paramname2   String? @default("colour") @db.VarChar(30)
+  Paramvalue2  String? @default("1") @db.VarChar(5)
+  Description2 String? @db.VarChar(50)
+  Paramname3   String? @default("timeinterval") @db.VarChar(30)
+  Paramvalue3  String? @default("8") @db.VarChar(5)
+  Description3 String? @db.VarChar(50)
+  Paramname4   String? @default("scrollspeed") @db.VarChar(30)
+  Paramvalue4  String? @default("2") @db.VarChar(5)
+  Description4 String? @db.VarChar(50)
+  Username     String  @default("") @db.VarChar(20)
+}
+
+model usertool_sharenote {
+  IDShare    Int      @id @default(autoincrement())
+  Username   String   @default("") @db.VarChar(20)
+  IDNote     Int      @default(0)
+  Dateshare  DateTime @default(dbgenerated("('0000-00-00')")) @db.Date
+  Lastaccess DateTime @default(dbgenerated("('0000-00-00')")) @db.Date
+}
+
+model utilisateur {
+  IDU     BigInt @id @default(autoincrement())
+  Usager  String @default("") @db.VarChar(70)
+  Trace   Int    @default(0) @db.TinyInt
+  IDTypeU Int    @default(0) @db.TinyInt
 }

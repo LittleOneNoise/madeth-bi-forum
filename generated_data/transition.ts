@@ -1,5 +1,5 @@
 export interface Transition {
     titre: string,
-    date: Date,
-    heure: Date
+    attribut: string,
+    date: Date
 }

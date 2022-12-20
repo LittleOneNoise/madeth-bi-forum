@@ -4,20 +4,21 @@ import fs from 'fs';
 
 async function getTransitions() {
     return await prisma.transition.findMany({
+        where: {
+            OR: [
+            { Titre: 'Poster un nouveau message' },
+            { Titre: 'Répondre à un message' }
+            ]
+        },
         select: {
             Titre: true,
-            Date: true,
-            Heure: true
+            Attribut: true,
+            Date: true
         }
     });
 }
-
-// const getTransitions = async () => 
-    
-
-
+ 
 getTransitions().then(data => {
-    fs.writeFileSync('./src/data/transitions.json', JSON.stringify(data, null, 4));
-
+    fs.writeFileSync('../generated_data/data_for_contribution_kpi.json', JSON.stringify(data, null, 4));
     // console.log(data);
 });

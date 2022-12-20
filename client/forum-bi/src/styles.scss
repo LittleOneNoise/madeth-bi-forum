@@ -1,0 +1,52 @@
+:root {
+    --main-red-color: #db4c3b;
+    --main-blue-color: #6185ef;
+    --white-text-color: #f3f3f3;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+// >>>>>>>>>> Text >>>>>>>>>>>>>>
+
+p {
+    font-family: 'Open Sans';
+    color: var(--text-color);
+    margin: 0;
+    font-size: 1em;
+  }
+  
+  h1 {
+    font-family: 'Open Sans';
+    color: var(--white-text-color);
+    margin: 0 auto;
+    font-weight: normal;
+  }
+  
+  h2 {
+    font-family: 'Open Sans';
+    color: var(--white-text-color);
+    margin: 0;
+    font-weight: normal;
+  }
+
+//   <<<<<<<<<<<<<<<<<<<
+
+  .page_banner {
+    background-color: var(--main-red-color);
+    margin: 1rem auto;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 1rem
+  }
+
+  .chart_container {
+    width: 50rem;
+    margin: auto;
+  }

@@ -2,7 +2,7 @@
 
 Titre: Contribution
 
-Quoi: Comptabiliser le nombre de réponse médian aux questions (postes) dans le forum.
+Quoi: Comptabiliser le nombre de réponses médian aux questions (postes) dans le forum.
 
 Objectif d’analyse: Les nombres observés pourront dans un premier temps indiquer si un grand nombre ou pas de questions ont des réponses.
 Pour les postes qui auront des réponses, on pourra voir si le nombre de réponse est élevé, cela peut témoigner d’une forte contribution.

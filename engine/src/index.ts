@@ -2,12 +2,12 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 import fs from 'fs';
 
-async function getTransitions() {
+async function getDataContribution() {
     return await prisma.transition.findMany({
         where: {
             OR: [
-            { Titre: 'Poster un nouveau message' },
-            { Titre: 'Répondre à un message' }
+                { Titre: 'Poster un nouveau message' },
+                { Titre: 'Répondre à un message' }
             ]
         },
         select: {
@@ -17,8 +17,7 @@ async function getTransitions() {
         }
     });
 }
- 
-getTransitions().then(data => {
+
+getDataContribution().then(data => {
     fs.writeFileSync('../generated_data/data_for_contribution_kpi.json', JSON.stringify(data, null, 4));
-    // console.log(data);
 });

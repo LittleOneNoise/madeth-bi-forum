@@ -49,4 +49,19 @@ p {
   .chart_container {
     width: 50rem;
     margin: auto;
+    border-color: var(--main-blue-color);
+    border-width: 0.5rem;
+    border-style: solid;
+    border-radius: 2rem;
+    padding: 1rem;
+  }
+
+  .chart_container2 {
+    height: 20rem;
+    margin: auto;
+    border-color: var(--main-blue-color);
+    border-width: 0.5rem;
+    border-style: solid;
+    border-radius: 2rem;
+    padding: 1rem;
   }

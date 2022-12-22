@@ -4,6 +4,9 @@
 Ce projet a pour but d'extraire des données provenant d'un forum (FLU) afin de les manipuler pour créer des indicateurs qui aiguilleront de futures décisions.<br/>
 Le projet se compose en 3 modules: parser, moteur et front. Le parser est à exécuter à part tandis que le moteur est directement intégré avec le front.<br/>
 
+<img src="https://user-images.githubusercontent.com/71726170/209234459-f5638510-79f3-46d2-bb46-0d0d16a8fd4a.png" width="700">
+<img src="https://user-images.githubusercontent.com/71726170/209236922-6719d21f-d7dc-46d9-96c6-aff6a1073c2d.png" width="700">
+
 ## Exécuter le parser
 
 Attention, le parser est configuré pour traiter des données présentent dans une bdd MySQL.<br/>

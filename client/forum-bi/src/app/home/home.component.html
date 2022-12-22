@@ -1,11 +1,25 @@
 <div class="page_banner">
-    <h1>Dashboard BI Forum FLU</h1>
-  </div>
-  
-  <div class="chart_container">
-    <canvas  id="contributionChart" >{{ contributionChart }}</canvas>
+  <h1>Dashboard BI Forum FLU</h1>
+</div>
+
+
+<div class="canva_line_div">
+
+  <div class="chart_container_with_label">
+
+    <div class="chart_container">
+      <canvas id="contributionChart">{{ contributionChart }}</canvas>
+      <p class="x_axis_label">Mois</p>
+    </div>
+
   </div>
 
-  <div class="chart_container2">
-    <canvas  id="contributionAccurateChart" >{{ contributionAccurateChart }}</canvas>
+  <div class="chart_container_with_label">
+
+    <div class="chart_container2">
+      <canvas id="contributionAccurateChart">{{ contributionAccurateChart }}</canvas>
+    </div>
+    <p class="x_axis_label">IDs des questions</p>
   </div>
+
+</div>

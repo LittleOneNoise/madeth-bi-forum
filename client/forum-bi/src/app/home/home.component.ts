@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { DataService } from '../services/data.service';
+import { EngineService } from '../services/engine.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   readonly MAIN_RED_COLOR = '#db4c3b';
   readonly WHITE_TEXT_COLOR = '#f3f3f3';
 
-  constructor(public dataService: DataService) { }
+  constructor(public engineService: EngineService) { }
 
   ngOnInit(): void {
     this.generateContributionChart();
@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
   public generateContributionChart(): void {
 
-    const contributionChartData = this.dataService.getContributionChartCleanData();
+    const contributionChartData = this.engineService.getContributionChartCleanData();
 
     this.contributionChart = new Chart("contributionChart", {
       type: 'bar',
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
 
   public generateContributionAccurateChart(): void {
 
-    const contributionAccurateChartData = this.dataService.getContributionAccurateChartCleanData();
+    const contributionAccurateChartData = this.engineService.getContributionAccurateChartCleanData();
 
     this.contributionAccurateChart = new Chart("contributionAccurateChart", {
       type: 'bar',

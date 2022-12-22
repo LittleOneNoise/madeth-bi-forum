@@ -4,7 +4,7 @@ import contributionRawData from '../../../../../generated_data/data_for_contribu
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class EngineService {
 
   readonly MONTHS = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"];
   readonly QUESTION_LABEL = 'Poster un nouveau message';
@@ -21,19 +21,19 @@ export class DataService {
 
     for (const contributionLine of Object.values(contributionRawData)) {
 
-      const month = this.MONTHS[new Date(contributionLine.Date).getMonth()];
+      const month = this.MONTHS[new Date(contributionLine.date).getMonth()];
 
       // Checks if the month doesn't exist as a key in the data object
       if (!(month in dataFirstStep)) {
-        dataFirstStep[month] = { [contributionLine.Titre]: 1 };
+        dataFirstStep[month] = { [contributionLine.titre]: 1 };
       }
 
       // Checks if the event type (title) doesn't exist as a key in the data[month] object
-      if (!(contributionLine.Titre in dataFirstStep[month])) {
-        dataFirstStep[month][contributionLine.Titre] = 1;
+      if (!(contributionLine.titre in dataFirstStep[month])) {
+        dataFirstStep[month][contributionLine.titre] = 1;
       }
 
-      dataFirstStep[month][contributionLine.Titre] += 1;
+      dataFirstStep[month][contributionLine.titre] += 1;
 
     };
 
@@ -74,12 +74,12 @@ export class DataService {
 
     for (const contributionLine of Object.values(contributionRawData)) {
 
-      const month = this.MONTHS[new Date(contributionLine.Date).getMonth()];
+      const month = this.MONTHS[new Date(contributionLine.date).getMonth()];
 
       // Only getting march month data
       if (month == this.MONTHS[2]) {
         // Splitting string on comma
-        let firstSplit = contributionLine.Attribut?.split(',');
+        let firstSplit = contributionLine.attribut?.split(',');
         // Splitting every sub string on equal sign and adding first part as key and 2nd part value
         let temp: any = {};
         firstSplit.forEach(e => {
@@ -87,7 +87,7 @@ export class DataService {
           temp[temp2[0]] = Number(temp2[1]);
         });
 
-        dataFirstStep.push({ Titre: contributionLine.Titre, ...temp });
+        dataFirstStep.push({ titre: contributionLine.titre, ...temp });
       }
 
     }
@@ -96,7 +96,7 @@ export class DataService {
 
     for (let index = 0; index < dataFirstStep.length; index++) {
       // If we are dealing a response message
-      if (dataFirstStep[index].Titre === this.REPONSE_LABEL) {
+      if (dataFirstStep[index].titre === this.REPONSE_LABEL) {
         let rootParentId = this.lookingForOriginalParentMessage(dataFirstStep, dataFirstStep[index].IDParent);
         if (rootParentId != -1) {
           dataSecondStep[rootParentId] = (dataSecondStep[rootParentId] || 0) + 1;
@@ -110,10 +110,15 @@ export class DataService {
 
     let tempLabelArray: string[] = [];
     let tempDatasetArray: any[] = [];
+    let counter: number = 0;
 
     for (const [k, v] of Object.entries(dataSecondStep)) {
       tempLabelArray.push(k);
       tempDatasetArray.push(v);
+      counter ++;
+      if(counter>19) {
+        break;
+      }
     };
 
     const result = {
@@ -124,7 +129,7 @@ export class DataService {
           data: tempDatasetArray,
           backgroundColor: this.MAIN_RED_COLOR,
           borderWidth: 1,
-          barPercentage: 0.4,
+          barPercentage: 1
         }
       ]
     }
